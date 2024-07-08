@@ -4,7 +4,7 @@ def none(checkList):
     Checks to see if all the items in the list are empty strings
     
     Parameters:
-        checkList ([String]): The List of strings you wish to check
+        checkList [String]: The List of strings you wish to check
     
     Returns:
         Bool:
@@ -25,7 +25,7 @@ def all(checkList):
     Checks to see if all the items in the list are strings of at least one character
     
     Parameters:
-        checkList ([String]): The List of strings you wish to check
+        checkList [String]: The List of strings you wish to check
     
     Returns:
         Bool:

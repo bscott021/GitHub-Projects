@@ -20,17 +20,15 @@ for exercise in fetchedExercises:
         exercisesToAdd.append(exercise)
 
 
-exerciseCount = len(fetchedExercises)
-
-print(f'Final Exercise Count: {exerciseCount}')
-print(f'Standard : {standardCount}')
-print(f'Variant : {variantCount}')
-
 myCodaAPI.addExercises(exercisesToAdd)
 
-addedExerciseCount = len(exercisesToAdd)
 
-print(f'Exercises Added: {addedExerciseCount}')
+print(f'Final Exercise Count: {len(fetchedExercises) + len(exercisesToAdd)}')
+print(f'Exercises Added: {len(exercisesToAdd)}')
+print(f'Standard : {standardCount}')
+print(f'Variant : {variantCount}')
+print('New Exercises : ')
 
 for addedExercise in exercisesToAdd:
     print(addedExercise.formattedExercise)
+

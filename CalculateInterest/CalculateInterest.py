@@ -2,12 +2,12 @@
 
 # Todo: Add tests and some better print statements. Improve the formatting and possibly allow posting to coda.
 
-numContributers = 1
-monthlyContribution = 500
-numMonths = 60
+numContributers = 5
+monthlyContribution = 150
+numMonths = 84
 monthlyRate = 0.05/12
 
-increaseAmount = 50
+increaseAmount = 0
 numMonthsIncrease = 12
 
 balance = 10000
