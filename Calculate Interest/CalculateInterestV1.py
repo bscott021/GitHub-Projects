@@ -1,5 +1,4 @@
 
-# Todo: Add tests and some better print statements. Improve the formatting and possibly allow posting to coda.
 
 numContributors = 5
 monthlyContribution = 150
