@@ -1,3 +1,6 @@
+import os
+import json
+
 
 def none(checkList):
     """
@@ -42,4 +45,21 @@ def all(checkList):
             return False
 
     return True
+
+
+def loadConfig(configFile='Exercise Builder/config.json'):
+    """
+    Load the config file values 
+    
+    Parameters:
+        configFile : Full file path to config file
+    
+    Returns: Config file json
+    """
+
+    if not os.path.exists(configFile):
+        raise FileNotFoundError(f"Configuration file '{configFile}' not found.")
+    
+    with open(configFile, 'r') as file:
+        return json.load(file)
 

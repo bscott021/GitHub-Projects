@@ -1,6 +1,9 @@
 
+import os
 import requests
+import json
 import Exercise
+import helpers
 
 def getExercises():
     """
@@ -12,40 +15,50 @@ def getExercises():
         [Exercise]: List of Exercise objects from a Coda document 
     """
 
-    authToken = "<replace>"
-    basePath = "https://coda.io/apis/v1"
+    authToken = os.getenv('authToken')
 
-    docId = "<replace>"
-    tableId = "<replace>"
-    exerciseRowId = "<replace>"
-    variantRowId = "<replace>"
-    equipmentRowId = "<replace>"
-    generateFlagId = "<replace>"
+    if not authToken:
+        raise ValueError("Missing environment variable: authToken")
     
-    headers = {'Authorization': f'Bearer {authToken}'}
-    uri = f'{basePath}/docs/{docId}/tables/{tableId}/rows'
-    res = requests.get(uri, headers=headers).json()
-    
-    returnedItems = res["items"]
-    variantExercises = []
-    
-    for variant in returnedItems:
+    try:
+        config = helpers.loadConfig()
+
+        basePath = config['basePath']
+
+        docId = config['docId']
+        exerciseTableId = config['exerciseTableId']
+        exerciseColId = config['exerciseColId']
+        variantColId = config['variantColId']
+        equipmentColId = config['equipmentColId']
+        generateFlagColId = config['generateFlagColId']
         
-        variantRow = variant["values"]
+        headers = {'Authorization': f'Bearer {authToken}'}
+        uri = f'{basePath}/docs/{docId}/tables/{exerciseTableId}/rows'
+        res = requests.get(uri, headers=headers).json()
         
-        exercise = variantRow[exerciseRowId]
-        variant = variantRow[variantRowId]
-        equipmentString = variantRow[equipmentRowId]
-        generateFlag = variantRow[generateFlagId]
+        returnedItems = res["items"]
+        variantExercises = []
+        
+        for variant in returnedItems:
+            
+            variantRow = variant["values"]
+            
+            exercise = variantRow[exerciseColId]
+            variant = variantRow[variantColId]
+            equipmentString = variantRow[equipmentColId]
+            generateFlag = variantRow[generateFlagColId]
 
-        equipmentList = []
+            equipmentList = []
 
-        if equipmentString != "":
-            equipmentList = equipmentString.split(",")
+            if equipmentString != "":
+                equipmentList = equipmentString.split(",")
 
-        for equipment in equipmentList:
-            variantExercises.append(Exercise.Exercise(variant, equipment, exercise, generateFlag))
+            for equipment in equipmentList:
+                variantExercises.append(Exercise.Exercise(variant, equipment, exercise, generateFlag))
 
+    except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
+        print(f"Error loading configuration during getExercises: {e}")
+        exit(1)
 
     return variantExercises
 
@@ -60,28 +73,38 @@ def addExercises(exerciseList):
     Returns: None
     """
 
-    authToken = "<replace>"
+    authToken = os.getenv('authToken')
 
-    basePath = "https://coda.io/apis/v1"
-    docId = "<replace>"
-    tableId = "<replace>"
-    columnId = "<replace>"
+    if not authToken:
+        raise ValueError("Missing environment variable: authToken")
 
-    headers = {'Authorization': f'Bearer {authToken}'}
-    uri = f'{basePath}/docs/{docId}/tables/{tableId}/rows'
+    try:
+        config = helpers.loadConfig()
 
-    rows = []
-    
-    for e in exerciseList:
-        rows.append({'cells': [
-            {'column': columnId, 'value': e.formattedExercise}
-        ]})
-    
-    payload = {
-        'rows': rows
-    }
-    
-    req = requests.post(uri, headers=headers, json=payload)
-    req.raise_for_status() # Throw if there was an error.
-    res = req.json()
+        basePath = "https://coda.io/apis/v1"
+        docId = config['docId']
+        generatedTableId = config['generatedTableId']
+        columnId = config['columnId']
+
+        headers = {'Authorization': f'Bearer {authToken}'}
+        uri = f'{basePath}/docs/{docId}/tables/{generatedTableId}/rows'
+
+        rows = []
+        
+        for e in exerciseList:
+            rows.append({'cells': [
+                {'column': columnId, 'value': e.formattedExercise}
+            ]})
+        
+        payload = {
+            'rows': rows
+        }
+        
+        req = requests.post(uri, headers=headers, json=payload)
+        req.raise_for_status() # Throw if there was an error.
+        res = req.json()
+
+    except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
+        print(f"Error loading configuration during addExercises: {e}")
+        exit(1)
 

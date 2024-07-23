@@ -1,6 +1,97 @@
 
+import os
+import json
 import requests 
+
+import ProjectionHeader
 import ProjectionRow
+
+
+def loadConfig(configFile='Calculate Interest/config.json'):
+    """
+    Load the config file values 
+    
+    Parameters:
+        configFile : Full file path to config file
+    
+    Returns: Config file json
+    """
+
+    if not os.path.exists(configFile):
+        raise FileNotFoundError(f"Configuration file '{configFile}' not found.")
+    
+    with open(configFile, 'r') as file:
+        return json.load(file)
+
+
+
+def getProjectionQueue():
+    """
+    Get the projetion rows that are ready to run
+    
+    Parameters: None
+    
+    Returns:
+        [ProjectionHeader]: List of ProjectionHeader objects in run status
+    """
+
+    authToken = os.getenv('authToken')
+
+    if not authToken:
+        raise ValueError("Missing environment variable: authToken")
+
+    runProjections = []
+
+    try:
+        config = loadConfig()
+
+        basePath = config['basePath']
+        docId = config['docId']
+        tableId = config['projectionHeaderTableId']
+
+        runColId = config['runColId']
+        generatedColId = config['generatedColId']
+        projetionColId = config['projetionColId']
+        totalMonthsColId = config['totalMonthsColId']
+        contributorsColId = config['contributorsColId']
+        individualAmountColId = config['individualAmountColId']
+        increaseAmountColId = config['increaseAmountColId']
+        monthsToIncreaseColId = config['monthsToIncreaseColId']
+        startingBalanceColId = config['startingBalanceColId']
+        yearlyInterestRateColId = config['yearlyInterestRateColId']
+        
+        headers = {'Authorization': f'Bearer {authToken}'}
+        uri = f'{basePath}/docs/{docId}/tables/{tableId}/rows'
+        res = requests.get(uri, headers=headers).json()
+        
+        returnedItems = res["items"]
+        
+        for projectionHeader in returnedItems:
+            
+            projectionHeaderRowId = projectionHeader["id"]
+            runProjectionRow = projectionHeader["values"]
+            
+            runColVal = runProjectionRow[runColId]
+            generatedColVal = runProjectionRow[generatedColId]
+            projetionColVal = runProjectionRow[projetionColId]
+            totalMonthsColVal = runProjectionRow[totalMonthsColId]                
+            contributorsColVal = runProjectionRow[contributorsColId]
+            individualAmountColVal = runProjectionRow[individualAmountColId]
+            increaseAmountColVal = runProjectionRow[increaseAmountColId]
+            monthsToIncreaseColVal = runProjectionRow[monthsToIncreaseColId] 
+            startingBalanceColVal = runProjectionRow[startingBalanceColId]
+            yearlyInterestRateColVal = runProjectionRow[yearlyInterestRateColId]
+
+            if runColVal:
+                runProjections.append(ProjectionHeader.ProjectionHeader(projectionHeaderRowId, runColVal, generatedColVal, projetionColVal, totalMonthsColVal, contributorsColVal, individualAmountColVal, increaseAmountColVal, monthsToIncreaseColVal, startingBalanceColVal, yearlyInterestRateColVal))
+
+    except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
+        print(f"Error loading configuration during getProjectionQueue: {e}")
+        exit(1)
+
+    return runProjections
+
+
 
 def addProjectionRows(projectionRowList):
     """
@@ -12,48 +103,59 @@ def addProjectionRows(projectionRowList):
     Returns: None
     """
 
-    authToken = "replace"
+    authToken = os.getenv('authToken')
 
-    basePath = "https://coda.io/apis/v1"
-    docId = "replace"
-    tableId = "replace"
-    columnId1 = "replace"
-    columnId2 = "replace"
-    columnId3 = "replace"
-    columnId4 = "replace"
-    columnId5 = "replace"
-    columnId6 = "replace"
-    columnId7 = "replace"
-    columnId8 = "replace"
+    if not authToken:
+        raise ValueError("Missing environment variable: authToken")
 
-    headers = {'Authorization': f'Bearer {authToken}'}
-    uri = f'{basePath}/docs/{docId}/tables/{tableId}/rows'
+    try:
+        config = loadConfig()
 
-    rows = []
-    
-    for r in projectionRowList:
-        rows.append({'cells': [
-            {'column': columnId1, 'value': r.projectionId},
-            {'column': columnId2, 'value': r.numMonths},
-            {'column': columnId3, 'value': r.numContributors},
-            {'column': columnId4, 'value': r.individualContribution},
-            {'column': columnId5, 'value': r.totalContributions},
-            {'column': columnId6, 'value': r.startingBalance},
-            {'column': columnId7, 'value': r.currentBalance},
-            {'column': columnId8, 'value': r.interestGained}
-        ]})
-    
-    payload = {
-        'rows': rows
-    }
-    
-    req = requests.post(uri, headers=headers, json=payload)
-    req.raise_for_status() #TODO: Throw if there was an error.
-    res = req.json()
+        basePath = config['basePath']
+        docId = config['docId']
+        tableId = config['projectionDataTableId']
+
+        projectionTextColId = config['projectionTextColId']
+        numMonthsColId = config['numMonthsColId']
+        numContributorsColId = config['numContributorsColId']
+        individualContributionColId = config['individualContributionColId']
+        totalContributionsColId = config['totalContributionsColId']
+        startingBalanceColId2 = config['startingBalanceColId2']
+        currentBalanceColId = config['currentBalanceColId']
+        interestGainedColId = config['interestGainedColId']
+
+        headers = {'Authorization': f'Bearer {authToken}'}
+        uri = f'{basePath}/docs/{docId}/tables/{tableId}/rows'
+
+        rows = []
+        
+        for r in projectionRowList:
+            rows.append({'cells': [
+                {'column': projectionTextColId, 'value': r.projectionId},
+                {'column': numMonthsColId, 'value': r.numMonths},
+                {'column': numContributorsColId, 'value': r.numContributors},
+                {'column': individualContributionColId, 'value': r.individualContribution},
+                {'column': totalContributionsColId, 'value': r.totalContributions},
+                {'column': startingBalanceColId2, 'value': r.startingBalance},
+                {'column': currentBalanceColId, 'value': r.currentBalance},
+                {'column': interestGainedColId, 'value': r.interestGained}
+            ]})
+        
+        payload = {
+            'rows': rows
+        }
+        
+        req = requests.post(uri, headers=headers, json=payload)
+        req.raise_for_status() #TODO: Throw if there was an error.
+        res = req.json()
+
+    except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
+        print(f"Error loading configuration during addProjectionRows: {e}")
+        exit(1)
 
 
 
-def runProjection(projectionId, numMonths, numContributors, individualContribution, increaseAmount, numMonthsToIncrease, startingBalance, yearlyInterestRate):
+def runProjection(projectionHeaderRowId, projectionId, numMonths, numContributors, individualContribution, increaseAmount, numMonthsToIncrease, startingBalance, yearlyInterestRate):
 
     """
     Calculate the projection data for a single projection and add the rows to Coda
@@ -102,4 +204,53 @@ def runProjection(projectionId, numMonths, numContributors, individualContributi
 
     addProjectionRows(projectionRows)
 
+    # Mark the projection header as generated and deselect the run flag 
+    updateProjectionFlags(projectionHeaderRowId, False, True)
+
+
+
+def updateProjectionFlags(rowId, runVal, generatedVal):
+
+    # Check for valid run status and generated status'
+    if type(runVal) != bool or type(generatedVal) != bool:
+        # TODO: Add better message here 
+        return
+
+    # Get API Token
+    authToken = os.getenv('authToken')
+
+    if not authToken:
+        raise ValueError("Missing environment variable: authToken")
+
+    # Get Cofig values and put if successful 
+    try:
+        config = loadConfig()
+
+        basePath = config['basePath']
+        docId = config['docId']
+        tableId = config['projectionHeaderTableId']
+
+        runColId = config['runColId']
+        generatedColId = config['generatedColId']
+
+
+        headers = {'Authorization': f'Bearer {authToken}'}
+        uri = f'{basePath}/docs/{docId}/tables/{tableId}/rows/{rowId}'
+        
+        payload = {
+            'row': {
+                'cells': [
+                    {'column': runColId, 'value': runVal},
+                    {'column': generatedColId, 'value': generatedVal}
+                ],
+            },
+        }
+        
+        req = requests.put(uri, headers=headers, json=payload)
+        req.raise_for_status() #TODO: Throw if there was an error.
+        res = req.json()
+
+    except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
+        print(f"Error loading configuration during addProjectionRows: {e}")
+        exit(1)
 

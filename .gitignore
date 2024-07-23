@@ -1,1 +1,4 @@
 /.DS_Store
+
+# Ignore configuration files with sensitive data
+config.json
