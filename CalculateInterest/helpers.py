@@ -16,17 +16,12 @@ def loadConfig(configFile='Calculate Interest/config.json'):
     
     Returns: Config file json
     """
-
-    if not os.path.exists(configFile):
-        raise FileNotFoundError(f"Configuration file '{configFile}' not found.")
     
     try: 
         with open(configFile, 'r') as file:
             return json.load(file)
     except (FileNotFoundError, PermissionError) as e:
         print(f"Error accessing file '{configFile}': {e}")
-    except json.JSONDecodeError as e:
-        print(f"Error decoding JSON from file '{configFile}': {e}")
     except (ValueError, TypeError) as e:
         print(f"Invalid data in file '{configFile}': {e}")
     except Exception as e:
