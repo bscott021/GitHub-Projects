@@ -7,7 +7,7 @@ import Classes.ProjectionHeader
 import Classes.ProjectionRow
 
 
-def loadConfig(configFile='Calculate Interest/config.json'):
+def loadConfig(configFile='CalculateInterest/config.json'):
     """
     Load the config file values 
     
@@ -20,30 +20,61 @@ def loadConfig(configFile='Calculate Interest/config.json'):
     try: 
         with open(configFile, 'r') as file:
             return json.load(file)
+        
     except (FileNotFoundError, PermissionError) as e:
         print(f"Error accessing file '{configFile}': {e}")
+
     except (ValueError, TypeError) as e:
         print(f"Invalid data in file '{configFile}': {e}")
+
     except Exception as e:
         print(f"Unexpected error reading file '{configFile}': {e}")
 
 
 def updateProjectionFlags(rowId, runVal, generatedVal):
+    """
+    Update the projection flags in the Projection Header table 
+    
+    Parameters:
+        rowId str : Row id to update flags for 
+        runVal bool : Value to determine if the projection should be run 
+        generatedVal vool : Value to track if the projection has been generated 
+    
+    Returns: Config file json
+    """
 
-    # Check for valid run status and generated status'
-    if type(runVal) != bool or type(generatedVal) != bool:
-        # TODO: Add better message here 
-        return
+    invalidInput = []
 
+    # Validate Parameters
+    if type(rowId) != str:
+        invalidInput.append(f'rowId expected str got: {rowId} ({type(rowId)})')
+
+    if type(runVal) != bool:
+        invalidInput.append(f'runVal expected bool got: {runVal} ({type(runVal)})')
+
+    if type(generatedVal) != bool:
+        invalidInput.append(f'generatedVal expected bool got: {generatedVal} ({type(generatedVal)})')
+
+
+    if invalidInput != []:
+        print(f'Invalid Input:')
+        for i in invalidInput:
+            print(i)
+        return False
+
+    
     # Get API Token
     authToken = os.getenv('authToken')
 
     if not authToken:
-        raise ValueError("Missing environment variable: authToken")
+        print('Missing environment variable: authToken')
+        return False
 
-    # Get Cofig values and put if successful 
-    try:
-        config = loadConfig()
+    
+    # Get Cofig values
+    config = loadConfig()
+
+    if config:
 
         basePath = config['basePath']
         docId = config['docId']
@@ -66,12 +97,12 @@ def updateProjectionFlags(rowId, runVal, generatedVal):
         }
         
         req = requests.put(uri, headers=headers, json=payload)
-        req.raise_for_status() #TODO: Throw if there was an error.
+        req.raise_for_status()
         res = req.json()
+        
+        print(res)
 
-    except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
-        print(f"Error loading configuration during addProjectionRows: {e}")
-        exit(1)
+    return True
 
 
 
