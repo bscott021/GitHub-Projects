@@ -1,69 +1,111 @@
 
 import unittest
 from unittest.mock import patch, Mock
-
-# import json
+import requests
 
 from helpers import updateProjectionFlags
 
 
 class TestUpdateProjectionFlags(unittest.TestCase):
 
+    @property
+    def configDict(self):
+        return {
+            'basePath': 'http://test.com',
+            'docId': 'doc-id',
+            'projectionHeaderTableId': 'table-id',
+            'runColId': 'run-col-id',
+            'generatedColId': 'run-col-id'
+    }
+    
+    
     # Test that valid input gives a successful return value
-    @patch('os.getenv', return_value='testToken')
+    @patch('helpers.loadConfig')
     @patch('requests.put')
-    def test_valid_input(self, mock_getenv, mock_put):
+    @patch('os.getenv', return_value='testToken')
+    def test_valid_input(self, mock_getenv, mock_put, mock_load_config):
+        mock_load_config.return_value = self.configDict
+
         mockResponse = Mock()
-        mockResponse.raise_for_status.return_value = {"requestId": "abc-123-def-456", "id": "i-tuVwxYz"}
-        mockResponse.json.return_value = {'status': 'success'}
+        mockResponse.status_code = 202
+        mockResponse.raise_for_status.return_value = None
+        mockResponse.json.return_value = {"requestId": "abc-123-def-456", "id": "i-tuVwxYz"} # {'status': 'success'}
         mock_put.return_value = mockResponse
     
-        returnVal = updateProjectionFlags('GoodColumnIdVal', True, False)
+        returnVal = updateProjectionFlags('GoodRowIdVal', True, False)
         self.assertTrue(returnVal)
+
+        # Additional checks for good input
+        mock_getenv.assert_called_once_with('authToken')
+        mock_load_config.assert_called_once()
+        mock_put.assert_called_once()
     
+
     # Test that 1 bad input gives an unsuccessful return value 
-    @patch('os.getenv', return_value='testToken')
-    def test_1_bad_input(self, mock_getenv):
-        returnVal = updateProjectionFlags('GoodColumnIdVal', 'BadRunVal', False)
+    def test_1_bad_input(self):
+        returnVal = updateProjectionFlags('GoodRowIdVal', 'BadRunVal', False)
         self.assertFalse(returnVal)
 
+
     # Test that multiple bad inputs gives an unsuccessful return value
-    @patch('os.getenv', return_value='testToken')
-    def test_multiple_bad_inputs(self, mock_getenv):
+    def test_multiple_bad_inputs(self):
         returnVal = updateProjectionFlags(0, 'BadRunVal', False)
         self.assertFalse(returnVal)
+
 
     # Test that no auth token gets an unsuccessful return val
     @patch('os.getenv', return_value=None)
     def test_no_auth_token(self, mock_getenv):
+        returnVal = updateProjectionFlags('GoodRowIdVal', True, False)
+        self.assertFalse(returnVal)
+
+        # Additional check for patch calls 
+        mock_getenv.assert_called_once_with('authToken')
+    
+
+    # Test successful put request (HTTP 202)
+    @patch('helpers.loadConfig')
+    @patch('requests.put')
+    @patch('os.getenv', return_value='testToken')
+    def test_202_response(self, mock_getenv, mock_put, mock_load_config):
+        mock_load_config.return_value = self.configDict
+
+        mockResponse = Mock()
+        mockResponse.status_code = 202
+        mockResponse.raise_for_status.return_value = None
+        mockResponse.json.return_value = {"requestId": "abc-123-def-456", "id": "i-tuVwxYz"} # {'status': 'success'}
+        mock_put.return_value = mockResponse
+
+        returnVal = updateProjectionFlags('GoodRowIdVal', True, False)
+        self.assertTrue(returnVal)
+
+        # Additional checks for patch calls 
+        mock_getenv.assert_called_once_with('authToken')
+        mock_load_config.assert_called_once()
+        mock_put.assert_called_once()
+    
+    
+    # Test Bad HTTP Response (400, 401, 403, 404, 429)
+    @patch('helpers.loadConfig')
+    @patch('requests.put')
+    @patch('os.getenv', return_value='testToken')
+    def test_400_response(self, mock_getenv, mock_put, mock_load_config):
+        mock_load_config.return_value = self.configDict
+
+        mockResponse = Mock()
+        mockResponse.status_code = 400
+        mockResponse.raise_for_status.return_value = requests.exceptions.HTTPError(response=Mock(status=400))
+        mockResponse.json.return_value = {"statusCode": 400, "statusMessage": "Bad Request", "message": "Bad Request"}
+        mock_put.return_value = mockResponse
+
         returnVal = updateProjectionFlags('GoodColumnIdVal', True, False)
         self.assertFalse(returnVal)
 
-    # Test successful put request (HTTP 202)
-    @patch('os.getenv', return_value='testToken')
-    @patch('requests.put')
-    def test_202_response(self, mock_getenv, mock_put):
-        mockResponse = Mock()
-        mockResponse.raise_for_status.return_value = None
-        mockResponse.json.return_value = {"requestId": "abc-123-def-456", "id": "i-tuVwxYz"}
-        mock_put.return_value = mockResponse
+        # Additional checks for patch calls 
+        mock_getenv.assert_called_once_with('authToken')
+        mock_load_config.assert_called_once()
+        mock_put.assert_called_once()
 
-        returnVal = updateProjectionFlags('GoodColumnIdVal', True, False)
-        self.assertTrue(returnVal)
-    
-    """
-    # Test 400
-    @patch('os.getenv', return_value='testToken')
-    @patch('requests.put')
-    def test_400_response(self, mock_getenv, mock_put):
-        mockResponse = Mock()
-        mockResponse.raise_for_status.return_value = None
-        mockResponse.json.return_value = {"requestId": "abc-123-def-456", "id": "i-tuVwxYz"}
-        mock_put.return_value = mockResponse
-
-        returnVal = updateProjectionFlags('GoodColumnIdVal', True, False)
-        self.assertTrue(returnVal)
-    """
 
 if __name__ == '__main__':
     unittest.main()
