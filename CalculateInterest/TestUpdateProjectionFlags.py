@@ -63,6 +63,20 @@ class TestUpdateProjectionFlags(unittest.TestCase):
         mock_getenv.assert_called_once_with('authToken')
     
 
+    # Test no config
+    @patch('helpers.loadConfig')
+    @patch('os.getenv', return_value='testToken')
+    def test_no_config(self, mock_getenv, mock_load_config):
+        mock_load_config.return_value = {}
+
+        returnVal = updateProjectionFlags('GoodRowIdVal', True, False)
+        self.assertFalse
+
+        # Additional checks for patch calls 
+        mock_getenv.assert_called_once_with('authToken')
+        mock_load_config.assert_called_once()
+
+    
     # Test successful put request (HTTP 202)
     @patch('helpers.loadConfig')
     @patch('requests.put')

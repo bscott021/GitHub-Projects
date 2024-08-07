@@ -162,55 +162,78 @@ def addProjectionRows(projectionRowList):
 
 
 def deleteProjectionRows(projectionText):
+    """
+    Delete projection rows for a certain ProjectionText value 
+    
+    Parameters str: projectionText
+    
+    Returns: 
+        True: When the delete was successful or there was nothing to delete 
+        False: When there was a problem with trying to delete
+    """
+
+    if type(projectionText) != str or len(projectionText) < 1:
+        return False
 
     # Get API Token
     authToken = os.getenv('authToken')
 
     if not authToken:
-        raise ValueError("Missing environment variable: authToken")
+        print('Missing environment variable: authToken')
+        return False
 
-    try:
-        config = loadConfig()
+    config = loadConfig()
 
-        basePath = config['basePath']
-        docId = config['docId']
-        tableId = config['projectionDataTableId']
-
-        projectionTextColId = config['projectionTextColId']
+    if config:
 
         headers = {'Authorization': f'Bearer {authToken}'}
 
         # Get the projection data rows to get the ids the need to be deleted 
-        uri = f'{basePath}/docs/{docId}/tables/{tableId}/rows'
+        uri = f'{config['basePath']}/docs/{config['docId']}/tables/{config['projectionDataTableId']}/rows'
         res = requests.get(uri, headers=headers).json()
-        
-        returnedItems = res["items"]
 
-        rowIdsToDelete = []
-        
-        for projectionData in returnedItems:
-            
-            projectionDataRowId = projectionData["id"]
-            projectionDataRow = projectionData["values"]
-            
-            runCprojectionTextColVal = projectionDataRow[projectionTextColId]
+        try:
+            returnedItems = res["items"]
 
-            # Add row ids if the prjoection = the header prjection passed in 
-            if projectionText == runCprojectionTextColVal:
-                rowIdsToDelete.append(projectionDataRowId)
+            if returnedItems != []:
 
-        # Create payload and delete the rows from the table 
-        payload = {
-            'rowIds': rowIdsToDelete,
-        }
+                rowIdsToDelete = []
 
-        req = requests.delete(uri, headers=headers, json=payload)
-        req.raise_for_status() # Throw if there was an error.
-        res = req.json()
+                for projectionData in returnedItems:
 
-    except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
-        print(f"Error loading configuration during addProjectionRows: {e}")
-        exit(1)
+                    projectionDataRow = projectionData["values"]
+                    
+                    runProjectionTextColVal = projectionDataRow[config['projectionTextColId']]
+
+                    if projectionText == runProjectionTextColVal:
+                        rowIdsToDelete.append(projectionData["id"])
+
+                payload = {
+                    'rowIds': rowIdsToDelete,
+                }
+
+                req = requests.delete(uri, headers=headers, json=payload)
+                req.raise_for_status()
+                res = req.json()
+
+                try:
+                    res['requestId']
+                    # Delete Succeeded
+                    return True
+
+                except:
+                    # Error from Delete Request
+                    print(f'HTTP Error Code: {res['statusCode']} - {res['statusMessage']}')
+
+            else:
+                # Nothing to delete
+                return True
+
+        except:
+            # Error from Get Request 
+            print(f'HTTP Error Code: {res['statusCode']} - {res['statusMessage']}')
+
+    return False
 
 
 
@@ -221,7 +244,10 @@ def getProjectionQueue():
     Parameters: None
     
     Returns:
-        [ProjectionHeader]: List of ProjectionHeader objects in run status
+        When Successful: 
+            [ProjectionHeader]: List of ProjectionHeader objects in run status
+        Else:
+            False: The projection queue did not return 
     """
 
     authToken = os.getenv('authToken')
@@ -234,54 +260,44 @@ def getProjectionQueue():
     config = loadConfig()
 
     if config: 
-        basePath = config['basePath']
-        docId = config['docId']
-        tableId = config['projectionHeaderTableId']
-
-        runColId = config['runColId']
-        generatedColId = config['generatedColId']
-        projetionColId = config['projetionColId']
-        totalMonthsColId = config['totalMonthsColId']
-        contributorsColId = config['contributorsColId']
-        individualAmountColId = config['individualAmountColId']
-        increaseAmountColId = config['increaseAmountColId']
-        monthsToIncreaseColId = config['monthsToIncreaseColId']
-        startingBalanceColId = config['startingBalanceColId']
-        yearlyInterestRateColId = config['yearlyInterestRateColId']
         
         headers = {'Authorization': f'Bearer {authToken}'}
-        uri = f'{basePath}/docs/{docId}/tables/{tableId}/rows'
+        uri = f'{config['basePath']}/docs/{config['docId']}/tables/{config['projectionHeaderTableId']}/rows'
         res = requests.get(uri, headers=headers).json()
-        
-        returnedItems = res["items"]
-        
-        for projectionHeader in returnedItems:
-            
-            projectionHeaderRowId = projectionHeader["id"]
-            runProjectionRow = projectionHeader["values"]
-            
-            runColVal = runProjectionRow[runColId]
-            generatedColVal = runProjectionRow[generatedColId]
-            projetionColVal = runProjectionRow[projetionColId]
-            totalMonthsColVal = runProjectionRow[totalMonthsColId]                
-            contributorsColVal = runProjectionRow[contributorsColId]
-            individualAmountColVal = runProjectionRow[individualAmountColId]
-            increaseAmountColVal = runProjectionRow[increaseAmountColId]
-            monthsToIncreaseColVal = runProjectionRow[monthsToIncreaseColId] 
-            startingBalanceColVal = runProjectionRow[startingBalanceColId]
-            yearlyInterestRateColVal = runProjectionRow[yearlyInterestRateColId]
 
-            if runColVal:
-                runProjections.append(Classes.ProjectionHeader.ProjectionHeader(projectionHeaderRowId, runColVal, generatedColVal, projetionColVal, totalMonthsColVal, contributorsColVal, individualAmountColVal, increaseAmountColVal, monthsToIncreaseColVal, startingBalanceColVal, yearlyInterestRateColVal))
+        try:
+            returnedItems = res["items"]
+        
+            for projectionHeader in returnedItems:
+                
+                projectionHeaderRowId = projectionHeader["id"]
+                runProjectionRow = projectionHeader["values"]
+                
+                runColVal = runProjectionRow[config['runColId']]
+                generatedColVal = runProjectionRow[config['generatedColId']]
+                projetionColVal = runProjectionRow[config['projetionColId']]
+                totalMonthsColVal = runProjectionRow[config['totalMonthsColId']]                
+                contributorsColVal = runProjectionRow[config['contributorsColId']]
+                individualAmountColVal = runProjectionRow[config['individualAmountColId']]
+                increaseAmountColVal = runProjectionRow[config['increaseAmountColId']]
+                monthsToIncreaseColVal = runProjectionRow[config['monthsToIncreaseColId']] 
+                startingBalanceColVal = runProjectionRow[config['startingBalanceColId']]
+                yearlyInterestRateColVal = runProjectionRow[config['yearlyInterestRateColId']]
+
+                if runColVal:
+                    runProjections.append(Classes.ProjectionHeader.ProjectionHeader(projectionHeaderRowId, runColVal, generatedColVal, projetionColVal, totalMonthsColVal, contributorsColVal, individualAmountColVal, increaseAmountColVal, monthsToIncreaseColVal, startingBalanceColVal, yearlyInterestRateColVal))
             
-        return runProjections
+            if runProjections != []:
+                return runProjections
+
+        except:
+            print(f'HTTP Error Code: {res['statusCode']} - {res['statusMessage']}')
     
     return False 
 
 
 
 def runProjection(projectionHeaderRowId, projectionId, numMonths, numContributors, individualContribution, increaseAmount, numMonthsToIncrease, startingBalance, yearlyInterestRate):
-
     """
     Calculate the projection data for a single projection and add the rows to Coda
     

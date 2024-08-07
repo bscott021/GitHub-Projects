@@ -28,7 +28,24 @@ class TestAddProjectionRows(unittest.TestCase):
     def test_no_auth_token(self, mock_getenv):
         returnVal = addProjectionRows([ProjectionRow("Test Id", 1, 1, 100, 100, 0, 100, 0)])
         self.assertFalse(returnVal)
-    
+
+        # Additional check for good input
+        mock_getenv.assert_called_once_with('authToken')
+
+
+    # Test no config
+    @patch('helpers.loadConfig')
+    @patch('os.getenv', return_value='testToken')
+    def test_no_config(self, mock_getenv, mock_load_config):
+        mock_load_config.return_value = {}
+
+        returnVal = addProjectionRows([ProjectionRow("Test Id", 1, 1, 100, 100, 0, 100, 0)])
+        self.assertFalse(returnVal)
+
+        # Additional checks for patch calls 
+        mock_getenv.assert_called_once_with('authToken')
+        mock_load_config.assert_called_once()
+
 
     # Test that valid input returns True 
     @patch('helpers.loadConfig')
