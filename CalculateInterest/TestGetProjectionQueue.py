@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch, Mock
 import requests
 from helpers import getProjectionQueue
-from Classes.ProjectionRow import ProjectionRow
+from ProjectionRow import ProjectionRow
 
 class TestGetProjectionQueue(unittest.TestCase):
 

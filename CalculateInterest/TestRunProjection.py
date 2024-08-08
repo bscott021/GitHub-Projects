@@ -85,6 +85,8 @@ class TestUpdateProjectionFlags(unittest.TestCase):
     
 
     # Test 0's 
+    @patch('helpers.addProjectionRows')
+    @patch('helpers.updateProjectionFlags')
     def test_zeros(self, mock_update, mock_add):
 
         mock_update.return_value = True

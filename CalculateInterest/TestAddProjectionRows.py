@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch, Mock
 import requests
 from helpers import addProjectionRows
-from Classes.ProjectionRow import ProjectionRow
+from ProjectionRow import ProjectionRow
 
 class TestAddProjectionRows(unittest.TestCase):
 

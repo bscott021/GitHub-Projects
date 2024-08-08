@@ -3,8 +3,8 @@ import os
 import json
 import requests 
 
-import Classes.ProjectionHeader
-from Classes.ProjectionRow import ProjectionRow
+import ProjectionHeader
+from ProjectionRow import ProjectionRow
 
 
 def loadConfig(configFilePath='config.json'):
@@ -285,7 +285,7 @@ def getProjectionQueue():
                 yearlyInterestRateColVal = runProjectionRow[config['yearlyInterestRateColId']]
 
                 if runColVal:
-                    runProjections.append(Classes.ProjectionHeader.ProjectionHeader(projectionHeaderRowId, runColVal, generatedColVal, projetionColVal, totalMonthsColVal, contributorsColVal, individualAmountColVal, increaseAmountColVal, monthsToIncreaseColVal, startingBalanceColVal, yearlyInterestRateColVal))
+                    runProjections.append(ProjectionHeader.ProjectionHeader(projectionHeaderRowId, runColVal, generatedColVal, projetionColVal, totalMonthsColVal, contributorsColVal, individualAmountColVal, increaseAmountColVal, monthsToIncreaseColVal, startingBalanceColVal, yearlyInterestRateColVal))
             
             if runProjections != []:
                 return runProjections
@@ -345,7 +345,7 @@ def runProjection(projectionHeaderRowId, projectionId, numMonths, numContributor
             individualContribution += increaseAmount
             monthCountIncrease = 0
 
-        projectionSnapshot = Classes.ProjectionRow.ProjectionRow(projectionId, monthCount, numContributors, individualContribution, totalContributions, startingBalance, balance, totalInterestGained)
+        projectionSnapshot = ProjectionRow(projectionId, monthCount, numContributors, individualContribution, totalContributions, startingBalance, balance, totalInterestGained)
         projectionRows.append(projectionSnapshot)
 
     addResult = addProjectionRows(projectionRows)
