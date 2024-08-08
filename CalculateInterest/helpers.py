@@ -110,7 +110,7 @@ def addProjectionRows(projectionRowList):
     Parameters:
         projectionRowList [ProjectionRow]: List of ProjectionRow objects to add
     
-    Returns: True if successful call, False otherwise 
+    Returns: True if successful, False otherwise 
     """
     if type(projectionRowList) != list:
         return False
@@ -302,6 +302,7 @@ def runProjection(projectionHeaderRowId, projectionId, numMonths, numContributor
     Calculate the projection data for a single projection and add the rows to Coda
     
     Parameters:
+        projectionHeaderRowId Number : Row id of the projection header passed in
         projectionId Number: Unique identifier for this projection 
         numMonths Number: Number of months to run the projection for 
         numContributors Number: Number of people contributing to the account 
@@ -311,8 +312,12 @@ def runProjection(projectionHeaderRowId, projectionId, numMonths, numContributor
         startingBalance Number: Starting balnce 
         yearlyInterestRate Number: Annual interest rate on the account 
     
-    Returns: None
+    Returns: [ProjectionRow] List of projection rows for this projection. If it was not added to Coda, then an empty list will be returned. The updateProjectionFlags result can be ignored.
     """
+
+    if numMonths < 1:
+        print(f'The number of months must be greater than 0')
+        return []
 
     monthlyRate = yearlyInterestRate/12
     balance = startingBalance
@@ -343,9 +348,12 @@ def runProjection(projectionHeaderRowId, projectionId, numMonths, numContributor
         projectionSnapshot = Classes.ProjectionRow.ProjectionRow(projectionId, monthCount, numContributors, individualContribution, totalContributions, startingBalance, balance, totalInterestGained)
         projectionRows.append(projectionSnapshot)
 
-    # Add the projection rows to the table 
-    addProjectionRows(projectionRows)
+    addResult = addProjectionRows(projectionRows)
 
-    # Mark the projection header as generated and deselect the run flag 
-    updateProjectionFlags(projectionHeaderRowId, False, True)
+    updateFlagsResult = updateProjectionFlags(projectionHeaderRowId, False, True)
+
+    if addResult and updateFlagsResult:
+        return projectionRows
+    
+    return []
 
