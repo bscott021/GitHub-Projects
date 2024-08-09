@@ -45,7 +45,6 @@ def updateProjectionFlags(rowId, runVal, generatedVal):
 
     invalidInput = []
 
-    # Validate Parameters
     if type(rowId) != str:
         invalidInput.append(f'rowId expected str got: {rowId} ({type(rowId)})')
 
@@ -64,7 +63,6 @@ def updateProjectionFlags(rowId, runVal, generatedVal):
         return False
 
     
-    # Get API Token
     authToken = os.getenv('authToken')
 
     if not authToken:
@@ -72,7 +70,6 @@ def updateProjectionFlags(rowId, runVal, generatedVal):
         return False
 
     
-    # Get Cofig values
     config = loadConfig()
 
     if config:
@@ -112,6 +109,7 @@ def addProjectionRows(projectionRowList):
     
     Returns: True if successful, False otherwise 
     """
+
     if type(projectionRowList) != list:
         return False
 
@@ -175,7 +173,7 @@ def deleteProjectionRows(projectionText):
     if type(projectionText) != str or len(projectionText) < 1:
         return False
 
-    # Get API Token
+
     authToken = os.getenv('authToken')
 
     if not authToken:
@@ -188,7 +186,6 @@ def deleteProjectionRows(projectionText):
 
         headers = {'Authorization': f'Bearer {authToken}'}
 
-        # Get the projection data rows to get the ids the need to be deleted 
         uri = f'{config['basePath']}/docs/{config['docId']}/tables/{config['projectionDataTableId']}/rows'
         res = requests.get(uri, headers=headers).json()
 
@@ -236,7 +233,6 @@ def deleteProjectionRows(projectionText):
     return False
 
 
-
 def getProjectionQueue():
     """
     Get the projetion rows that are ready to run
@@ -274,18 +270,9 @@ def getProjectionQueue():
                 runProjectionRow = projectionHeader["values"]
                 
                 runColVal = runProjectionRow[config['runColId']]
-                generatedColVal = runProjectionRow[config['generatedColId']]
-                projetionColVal = runProjectionRow[config['projetionColId']]
-                totalMonthsColVal = runProjectionRow[config['totalMonthsColId']]                
-                contributorsColVal = runProjectionRow[config['contributorsColId']]
-                individualAmountColVal = runProjectionRow[config['individualAmountColId']]
-                increaseAmountColVal = runProjectionRow[config['increaseAmountColId']]
-                monthsToIncreaseColVal = runProjectionRow[config['monthsToIncreaseColId']] 
-                startingBalanceColVal = runProjectionRow[config['startingBalanceColId']]
-                yearlyInterestRateColVal = runProjectionRow[config['yearlyInterestRateColId']]
 
                 if runColVal:
-                    runProjections.append(ProjectionHeader.ProjectionHeader(projectionHeaderRowId, runColVal, generatedColVal, projetionColVal, totalMonthsColVal, contributorsColVal, individualAmountColVal, increaseAmountColVal, monthsToIncreaseColVal, startingBalanceColVal, yearlyInterestRateColVal))
+                    runProjections.append(ProjectionHeader.ProjectionHeader(projectionHeaderRowId, runColVal, runProjectionRow[config['generatedColId']], runProjectionRow[config['projetionColId']], runProjectionRow[config['totalMonthsColId']], runProjectionRow[config['contributorsColId']], runProjectionRow[config['individualAmountColId']], runProjectionRow[config['increaseAmountColId']], runProjectionRow[config['monthsToIncreaseColId']], runProjectionRow[config['startingBalanceColId']], runProjectionRow[config['yearlyInterestRateColId']]))
             
             if runProjections != []:
                 return runProjections
@@ -296,14 +283,13 @@ def getProjectionQueue():
     return False 
 
 
-
 def runProjection(projectionHeaderRowId, projectionId, numMonths, numContributors, individualContribution, increaseAmount, numMonthsToIncrease, startingBalance, yearlyInterestRate):
     """
     Calculate the projection data for a single projection and add the rows to Coda
     
     Parameters:
-        projectionHeaderRowId Number : Row id of the projection header passed in
-        projectionId Number: Unique identifier for this projection 
+        projectionHeaderRowId String : Row id of the projection header passed in
+        projectionId : Unique identifier for this projection 
         numMonths Number: Number of months to run the projection for 
         numContributors Number: Number of people contributing to the account 
         individualContribution Number: Amount each person is contributing 
@@ -312,7 +298,10 @@ def runProjection(projectionHeaderRowId, projectionId, numMonths, numContributor
         startingBalance Number: Starting balnce 
         yearlyInterestRate Number: Annual interest rate on the account 
     
-    Returns: [ProjectionRow] List of projection rows for this projection. If it was not added to Coda, then an empty list will be returned. The updateProjectionFlags result can be ignored.
+    Returns: 
+        [ProjectionRow] List of projection rows for this projection
+            OR
+        [] If it was not added to Coda
     """
 
     if numMonths < 1:

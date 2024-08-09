@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch, Mock
 import requests
 from helpers import getProjectionQueue
-from ProjectionRow import ProjectionRow
+
 
 class TestGetProjectionQueue(unittest.TestCase):
 
@@ -25,13 +25,12 @@ class TestGetProjectionQueue(unittest.TestCase):
         "yearlyInterestRateColId": "c-10"
     }
     
+    
     # Test that no auth token returns False
     @patch('os.getenv', return_value=None)
     def test_no_auth_token(self, mock_getenv):
         returnVal = getProjectionQueue()
         self.assertFalse(returnVal)
-
-        # Additional checks for good input
         mock_getenv.assert_called_once_with('authToken')
     
 
@@ -44,7 +43,6 @@ class TestGetProjectionQueue(unittest.TestCase):
         returnVal = getProjectionQueue()
         self.assertFalse(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
 
@@ -65,7 +63,6 @@ class TestGetProjectionQueue(unittest.TestCase):
         returnVal = getProjectionQueue()
         self.assertFalse(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_get.assert_called_once()
@@ -87,7 +84,6 @@ class TestGetProjectionQueue(unittest.TestCase):
         returnVal = getProjectionQueue()
         self.assertIsInstance(returnVal, list)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_get.assert_called_once()
@@ -109,7 +105,6 @@ class TestGetProjectionQueue(unittest.TestCase):
         returnVal = getProjectionQueue()
         self.assertFalse(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_get.assert_called_once()

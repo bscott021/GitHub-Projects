@@ -1,7 +1,6 @@
 
 import unittest
 from unittest.mock import patch
-
 from helpers import runProjection
 
 
@@ -231,7 +230,7 @@ class TestUpdateProjectionFlags(unittest.TestCase):
     # Test non 0 starting balance 
     @patch('helpers.addProjectionRows')
     @patch('helpers.updateProjectionFlags')
-    def test_valid_input(self, mock_update, mock_add):
+    def test_non_0_start_balance(self, mock_update, mock_add):
 
         mock_update.return_value = True
         mock_add.return_value = True

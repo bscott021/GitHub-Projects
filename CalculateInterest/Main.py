@@ -15,4 +15,5 @@ if type(projectionQueue) != bool:
             helpers.runProjection(projection.projectionHeaderRowId, projection.projectionTitle, projection.totalMonths, projection.contributors, projection.individualAmount, projection.increaseAmount, projection.monthsToIncrease, projection.startingBalance, projection.yearlyInterestRate)
 
 else:
-    print('Could not process projection: helpers.getProjectionQueue was not successful.')
+    print('Could not process projection: helpers.getProjectionQueue did not return any projections to run.')
+

@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch, Mock
 import requests
 from helpers import deleteProjectionRows
-from ProjectionRow import ProjectionRow
+
 
 class TestDeleteProjectionRows(unittest.TestCase):
 
@@ -15,6 +15,7 @@ class TestDeleteProjectionRows(unittest.TestCase):
         "projectionDataTableId": "grid-id",
         "projectionTextColId": "c-1"
     }
+
 
     # Test Bad Input Type
     def test_bad_input_type(self):
@@ -34,7 +35,6 @@ class TestDeleteProjectionRows(unittest.TestCase):
         returnVal = deleteProjectionRows('Test Text')
         self.assertFalse(returnVal)
 
-        # Additional check for good input
         mock_getenv.assert_called_once_with('authToken')
     
     
@@ -47,9 +47,9 @@ class TestDeleteProjectionRows(unittest.TestCase):
         returnVal = deleteProjectionRows('Test Text')
         self.assertFalse(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
+
 
     # Test successful call
     @patch('helpers.loadConfig')
@@ -74,7 +74,6 @@ class TestDeleteProjectionRows(unittest.TestCase):
         returnVal = deleteProjectionRows('Test Text')
         self.assertTrue(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_get.assert_called_once()
@@ -97,12 +96,11 @@ class TestDeleteProjectionRows(unittest.TestCase):
         returnVal = deleteProjectionRows('Test Text')
         self.assertTrue(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_get.assert_called_once()
 
-    
+
     # Test unsuccessful Get call returns False 
     @patch('helpers.loadConfig')
     @patch('requests.get')
@@ -119,13 +117,12 @@ class TestDeleteProjectionRows(unittest.TestCase):
         returnVal = deleteProjectionRows('Test Text')
         self.assertFalse(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_get.assert_called_once()
 
 
-    # Test Unsuccessful Delete - False 
+    # Test Unsuccessful Delete returns False 
     @patch('helpers.loadConfig')
     @patch('requests.delete')
     @patch('requests.get')
@@ -148,7 +145,6 @@ class TestDeleteProjectionRows(unittest.TestCase):
         returnVal = deleteProjectionRows('Test Text')
         self.assertFalse(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_get.assert_called_once()

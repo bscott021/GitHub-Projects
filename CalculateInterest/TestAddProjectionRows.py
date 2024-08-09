@@ -5,6 +5,7 @@ import requests
 from helpers import addProjectionRows
 from ProjectionRow import ProjectionRow
 
+
 class TestAddProjectionRows(unittest.TestCase):
 
     @property
@@ -23,13 +24,12 @@ class TestAddProjectionRows(unittest.TestCase):
         "interestGainedColId": "col8"
     }
     
+    
     # Test that no auth token returns False
     @patch('os.getenv', return_value=None)
     def test_no_auth_token(self, mock_getenv):
         returnVal = addProjectionRows([ProjectionRow("Test Id", 1, 1, 100, 100, 0, 100, 0)])
         self.assertFalse(returnVal)
-
-        # Additional check for good input
         mock_getenv.assert_called_once_with('authToken')
 
 
@@ -42,7 +42,6 @@ class TestAddProjectionRows(unittest.TestCase):
         returnVal = addProjectionRows([ProjectionRow("Test Id", 1, 1, 100, 100, 0, 100, 0)])
         self.assertFalse(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
 
@@ -63,7 +62,6 @@ class TestAddProjectionRows(unittest.TestCase):
         returnVal = addProjectionRows([ProjectionRow("Test Id", 1, 1, 100, 100, 0, 100, 0)])
         self.assertTrue(returnVal)
 
-        # Additional checks for good input
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_post.assert_called_once()
@@ -85,7 +83,6 @@ class TestAddProjectionRows(unittest.TestCase):
         returnVal = addProjectionRows([ProjectionRow("Test Id", 1, 1, 100, 100, 0, 100, 0), "NotAProjectionRowObject"])
         self.assertTrue(returnVal)
 
-        # Additional checks for good input
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_post.assert_called_once()
@@ -106,7 +103,6 @@ class TestAddProjectionRows(unittest.TestCase):
         returnVal = addProjectionRows([])
         self.assertFalse(returnVal)
 
-        # Additional checks patching calls
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
 
@@ -120,7 +116,6 @@ class TestAddProjectionRows(unittest.TestCase):
         returnVal = addProjectionRows([1, 'SecondInvalidValue'])
         self.assertFalse(returnVal)
 
-        # Additional checks for patching calls
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
 
@@ -141,7 +136,6 @@ class TestAddProjectionRows(unittest.TestCase):
         returnVal = addProjectionRows([ProjectionRow("Test Id", 1, 1, 100, 100, 0, 100, 0)])
         self.assertTrue(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_post.assert_called_once()
@@ -163,7 +157,6 @@ class TestAddProjectionRows(unittest.TestCase):
         returnVal = addProjectionRows([ProjectionRow("Test Id", 1, 1, 100, 100, 0, 100, 0)])
         self.assertFalse(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_post.assert_called_once()

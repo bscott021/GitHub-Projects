@@ -2,7 +2,6 @@
 import unittest
 from unittest.mock import patch, Mock
 import requests
-
 from helpers import updateProjectionFlags
 
 
@@ -35,7 +34,6 @@ class TestUpdateProjectionFlags(unittest.TestCase):
         returnVal = updateProjectionFlags('GoodRowIdVal', True, False)
         self.assertTrue(returnVal)
 
-        # Additional checks for good input
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_put.assert_called_once()
@@ -58,8 +56,6 @@ class TestUpdateProjectionFlags(unittest.TestCase):
     def test_no_auth_token(self, mock_getenv):
         returnVal = updateProjectionFlags('GoodRowIdVal', True, False)
         self.assertFalse(returnVal)
-
-        # Additional check for patch calls 
         mock_getenv.assert_called_once_with('authToken')
     
 
@@ -72,7 +68,6 @@ class TestUpdateProjectionFlags(unittest.TestCase):
         returnVal = updateProjectionFlags('GoodRowIdVal', True, False)
         self.assertFalse
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
 
@@ -93,7 +88,6 @@ class TestUpdateProjectionFlags(unittest.TestCase):
         returnVal = updateProjectionFlags('GoodRowIdVal', True, False)
         self.assertTrue(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_put.assert_called_once()
@@ -115,7 +109,6 @@ class TestUpdateProjectionFlags(unittest.TestCase):
         returnVal = updateProjectionFlags('GoodColumnIdVal', True, False)
         self.assertFalse(returnVal)
 
-        # Additional checks for patch calls 
         mock_getenv.assert_called_once_with('authToken')
         mock_load_config.assert_called_once()
         mock_put.assert_called_once()
