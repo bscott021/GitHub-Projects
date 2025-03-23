@@ -1,0 +1,1715 @@
+[
+    {
+        "exercise_base_name": "Walk",
+        "variants": [
+            {
+                "variant_name": "Incline",
+                "equipment": [
+                    "Treadmill",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Treadmill",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Run",
+        "variants": [
+            {
+                "variant_name": "Incline",
+                "equipment": [
+                    "Treadmill",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Treadmill",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Jog",
+        "variants": [
+            {
+                "variant_name": "Incline",
+                "equipment": [
+                    "Treadmill",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Treadmill",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Jump Rope",
+        "variants": [
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Jump Rope",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Bike",
+        "variants": [
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Exercise Bike",
+                    "Bike"
+                ]
+            },
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Elliptical",
+        "variants": [
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Elliptical",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Stairs",
+        "variants": [
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Stair Stepper",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Turkish Get Up",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Kettlebell",
+                    "Dumbbell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Superman",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Body Weight",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Split Jerks",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Barbell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Snatch",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "1 Arm",
+                "equipment": [
+                    "Dumbbell",
+                    "Kettlebell",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Hang",
+                "equipment": [
+                    "Barbell",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Power",
+                "equipment": [
+                    "Barbell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Sled",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Pull",
+                "equipment": [
+                    "Sled",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Push",
+                "equipment": [
+                    "Sled",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Slams",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Medicine Ball",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Rotational Throws",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Medicine Ball",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Rotation",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Anti",
+                "equipment": [
+                    "Landmine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Landmine",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Plank",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Side",
+                "equipment": [
+                    "Body Weight",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Body Weight",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Overhead Throws",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Medicine Ball",
+                    "Kettlebell",
+                    "Sand Bag",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Mountain Climbers",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Leg Raises",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Decline Bench",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Hanging",
+                "equipment": [
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Jefferson Curl",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Barbell",
+                    "Dumbbell",
+                    "Cable",
+                    "EZ Bar",
+                    "Medicine Ball",
+                    "Kettlebell",
+                    "Body Weight",
+                    "Plate",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Deadlift",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Sumo",
+                "equipment": [
+                    "Barbell",
+                    "Elephant Bar",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Barbell",
+                    "Hex Bar",
+                    "Elephant Bar",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Clean and Jerk",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Barbell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Clean",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Hang",
+                "equipment": [
+                    "Barbell",
+                    "Kettlebell",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Power",
+                "equipment": [
+                    "Barbell",
+                    "Kettlebell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Burpees",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Body Weight",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Bird Dog",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Body Weight",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Tibia Raises",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Body Weight",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Squat",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Bulgarian Split",
+                "equipment": [
+                    "Dumbbell",
+                    "Kettlebell",
+                    "Weight Belt",
+                    "Body Weight",
+                    "Smith Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Split",
+                "equipment": [
+                    "Dumbbell",
+                    "Kettlebell",
+                    "Smith Machine",
+                    "Body Weight",
+                    "Weight Belt",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Body Weight",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Box",
+                "equipment": [
+                    "Barbell",
+                    "Safety Bar",
+                    "Body Weight",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Overhead Squat",
+                "equipment": [
+                    "Barbell",
+                    "Kettlebell",
+                    "Medicine Ball",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Safety Bar Squat",
+                "equipment": [
+                    "Safety Bar",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Cossac",
+                "equipment": [
+                    "Dumbbell",
+                    "Kettlebell",
+                    "Body Weight",
+                    "Weight Vest",
+                    "Plate",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Goblet",
+                "equipment": [
+                    "Dumbbell",
+                    "Medicine Ball",
+                    "Kettlebell",
+                    "Mace",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Back",
+                "equipment": [
+                    "Barbell",
+                    "Smith Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Front",
+                "equipment": [
+                    "Barbell",
+                    "Smith Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Zercher",
+                "equipment": [
+                    "Barbell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Romanian Deadlift",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Barbell",
+                    "Dumbbell",
+                    "Smith Machine",
+                    "Kettlebell",
+                    "Hex Bar",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Single Leg",
+                "equipment": [
+                    "Dumbbell",
+                    "Kettlebell",
+                    "Body Weight",
+                    "Plate",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Reverse Hyperextension",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Single Leg",
+                "equipment": [
+                    "Reverse Hyper Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Reverse Hyper Machine",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Pull Throughs",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Reverse Hyper Machine",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Lunges",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Reverse",
+                "equipment": [
+                    "Barbell",
+                    "Dumbbell",
+                    "Medicine Ball",
+                    "Landmine",
+                    "Kettlebell",
+                    "Body Weight",
+                    "Weight Vest",
+                    "Plate",
+                    "Sand Bag",
+                    "Elephant Bar",
+                    "Hex Bar",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Barbell",
+                    "Dumbbell",
+                    "Medicine Ball",
+                    "Landmine",
+                    "Kettlebell",
+                    "Body Weight",
+                    "Weight Vest",
+                    "Plate",
+                    "Sand Bag",
+                    "Elephant Bar",
+                    "Hex Bar",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Leg Press",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Single",
+                "equipment": [
+                    "Leg Press",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Close",
+                "equipment": [
+                    "Leg Press",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Wide",
+                "equipment": [
+                    "Leg Press",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Leg Press",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Leg Extension",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Leg Extension Machine",
+                    "Reverse Hyper Machine",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Leg Curl",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Leg Curl Machine",
+                    "Reverse Hyper Machine",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Hip Thrust",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Barbell",
+                    "Elephant Bar",
+                    "Smith Machine",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Hack Squat",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Wide Stance",
+                "equipment": [
+                    "Hack Squat Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Close Stance",
+                "equipment": [
+                    "Hack Squat Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Single Leg",
+                "equipment": [
+                    "Hack Squat Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Elevated",
+                "equipment": [
+                    "Hack Squat Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Hack Squat Machine",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Good Morning",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Barbell",
+                    "Safety Bar",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Zercher",
+                "equipment": [
+                    "Barbell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Glute Ham Raise",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Elephant Walk",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Calf Raise",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Barbell",
+                    "Dumbbell",
+                    "Smith Machine",
+                    "Kettlebell",
+                    "Body Weight",
+                    "Calf Machine",
+                    "Leg Press",
+                    "Hack Squat Machine",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Twists",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Russian",
+                "equipment": [
+                    "Medicine Ball",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Cable",
+                    "Resistance Bands",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Tricep Extension",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Overhead",
+                "equipment": [
+                    "EZ Bar",
+                    "Dumbbell",
+                    "Mace",
+                    "Cable",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "EZ Bar",
+                    "Dumbbell",
+                    "Resistance Bands",
+                    "Indian Club",
+                    "Kettlebell",
+                    "Cable",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Swings",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Mace",
+                    "Kettlebell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Skullcrusher",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "EZ Bar",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Side Bend",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Kettlebell",
+                    "Dumbbell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Shrugs",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Barbell",
+                    "Dumbbell",
+                    "Smith Machine",
+                    "Kettlebell",
+                    "Hex Bar",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Rows",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Cable",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Inverted",
+                "equipment": [
+                    "Barbell",
+                    "Smith Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Underhand Bent Over",
+                "equipment": [
+                    "Dumbbell",
+                    "Kettlebell",
+                    "Barbell",
+                    "Smith Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "T-Bar",
+                "equipment": [
+                    "Landmine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Supported",
+                "equipment": [
+                    "Dumbbell",
+                    "Rowing Machine",
+                    "Kettlebell",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Bent Over",
+                "equipment": [
+                    "Barbell",
+                    "Dumbbell",
+                    "Kettlebell",
+                    "Smith Machine",
+                    "Hex Bar",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Raises",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Front",
+                "equipment": [
+                    "Dumbbell",
+                    "Cable",
+                    "Kettlebell",
+                    "Indian Club",
+                    "Plate",
+                    "Resistance Bands",
+                    "EZ Bar",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Side Lateral",
+                "equipment": [
+                    "Dumbbell",
+                    "Cable",
+                    "Kettlebell",
+                    "Indian Club",
+                    "Plate",
+                    "Resistance Bands",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Push-Ups",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Weight Vest",
+                    "Body Weight",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Pulls",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Face",
+                "equipment": [
+                    "Cable",
+                    "Resistance Bands",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Single Arm",
+                "equipment": [
+                    "Cable",
+                    "Resistance Bands",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Cable",
+                    "Resistance Bands",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Pullover",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "EZ Bar",
+                    "Dumbbell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Pull-Ups",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Weight Belt",
+                    "Weight Vest",
+                    "Resistance Bands",
+                    "Body Weight",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Australian",
+                "equipment": [
+                    "Body Weight",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Press",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Push",
+                "equipment": [
+                    "Barbell",
+                    "Kettlebell",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Bottom Up",
+                "equipment": [
+                    "Kettlebell",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Floor",
+                "equipment": [
+                    "Dumbbell",
+                    "Barbell",
+                    "Kettlebell",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Cuban",
+                "equipment": [
+                    "Dumbbell",
+                    "Indian Club",
+                    "Plate",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Overhead Press",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Single",
+                "equipment": [
+                    "Dumbbell",
+                    "Kettlebell",
+                    "Mace",
+                    "Indian Club",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Barbell",
+                    "Dumbbell",
+                    "Shoulder Press Machine",
+                    "Kettlebell",
+                    "Mace",
+                    "Landmine",
+                    "Smith Machine",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Lat Pull Down",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Cable",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Lat Pulldown Machine"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Flys",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Rear Delt",
+                "equipment": [
+                    "Dumbbell",
+                    "Fly Machine",
+                    "Cable",
+                    "Indian Club",
+                    "Plate",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Pec",
+                "equipment": [
+                    "Dumbbell",
+                    "Cable",
+                    "Indian Club",
+                    "Plate",
+                    "Fly Machine",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Farmers Walk",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Dumbbell",
+                    "Kettlebell",
+                    "Plate",
+                    "Hex Bar",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Face Pulls",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Cable",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Dips",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Dumbbell",
+                    "Weight Belt",
+                    "Weight Vest",
+                    "Body Weight",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Curls",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Hammer",
+                "equipment": [
+                    "Dumbbell",
+                    "Kettlebell",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Alternating Bicep",
+                "equipment": [
+                    "Dumbbell",
+                    "Kettlebell",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Bicep",
+                "equipment": [
+                    "Barbell",
+                    "EZ Bar",
+                    "Dumbbell",
+                    "Resistance Bands",
+                    "Kettlebell",
+                    "Elephant Bar",
+                    "Cable",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Preacher",
+                "equipment": [
+                    "Dumbbell",
+                    "EZ Bar",
+                    "Barbell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Crunches",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Resistance Bands",
+                    "Cable",
+                    "Body Weight",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Crossover",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Cable",
+                "equipment": [
+                    "Cable",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Bicep Curl to Press",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Kettlebell",
+                    "Dumbbell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Bench Press",
+        "variants": [
+            {
+                "variant_name": "None",
+                "equipment": [
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Close Grip",
+                "equipment": [
+                    "Barbell",
+                    "EZ Bar",
+                    "Smith Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Wide Grip",
+                "equipment": [
+                    "Barbell",
+                    "Smith Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Dumbbell",
+                    "Barbell",
+                    "Flat Chest Press Machine",
+                    "Kettlebell",
+                    "Smith Machine",
+                    "None"
+                ]
+            },
+            {
+                "variant_name": "Incline",
+                "equipment": [
+                    "Barbell",
+                    "Dumbbell",
+                    "Incline Chest Press Machine",
+                    "Kettlebell",
+                    "None"
+                ]
+            }
+        ]
+    },
+    {
+        "exercise_base_name": "Wood Chop",
+        "variants": [
+            {
+                "variant_name": "Standard",
+                "equipment": [
+                    "Cable"
+                ]
+            }
+        ]
+    }
+]
